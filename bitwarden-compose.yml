@@ -1,0 +1,17 @@
+version: '3'
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    ports:
+      - 8088:80
+    restart: always
+    volumes:
+      - /mnt/data/bitwarden/data:/data
+    networks:
+      - bitwarden_network
+    environment:
+      WEBSOCKET_ENABLED: 'true' # Required to use websockets
+      SIGNUPS_ALLOWED: 'true'   # set to false to disable signups
+
+networks:
+  bitwarden_network:
